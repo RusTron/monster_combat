@@ -32,12 +32,11 @@ class Monster {
   };
 
   performAction(action, opponent, reportAttack, reportRecovery) {
-    if (this.actions >= action) {
-      this.canAttack() ? this.attack(opponent) : this.increaseHealth();
-      this.currentHit
-        ? reportAttack(this.character, this.currentWeapon.name, this.currentHit, opponent)
-        : reportRecovery(this.character, this.restoredHealth);
-    };
+    if (!this.actions >= action) return;
+    this.canAttack() ? this.attack(opponent) : this.increaseHealth();
+    this.currentHit
+      ? reportAttack(this.character, this.currentWeapon.name, this.currentHit, opponent)
+      : reportRecovery(this.character, this.restoredHealth);
   }
 
   canAttack() { 

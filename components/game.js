@@ -34,7 +34,7 @@ class Game {
     this.currentRound += 1;
   }
 
-  reportAttack(monster, hit, weapon, defender) {
+  reportAttack(monster, weapon, hit, defender) {
     console.log(`${monster} attacks ${defender.character} with ${weapon} dealing ${hit} damage`);
   }
 
