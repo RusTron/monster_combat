@@ -14,6 +14,7 @@ class Game {
   start() {
     while (this.monster1.alive && this.monster2.alive) {
       this.round(this.monster1, this.monster2);
+      if(this.currentRound > 200) return this.finish();
     }
   }
 
@@ -43,7 +44,8 @@ class Game {
   }
 
   finish(monster) {
-    console.log(`The ${monster.character} monster is win!`);
-    window.alert(`The ${monster.character} monster is win!`)
+    const result = monster ? `The ${monster.character} monster is winner!` : 'No winner'; 
+    console.log(result);
+    window.alert(result);
   }
 }
