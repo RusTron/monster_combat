@@ -7,7 +7,7 @@ class Monster {
     this.alive = true;
     this.currentHit = 0;
     this.currentWeapon = '';
-    this.restoredHealth = this.addHealth();
+    this.restoredHealth = 0;
     this.demage = 0;
   }
 
@@ -40,7 +40,7 @@ class Monster {
   }
 
   canAttack() { 
-    return !this.healthForRest || this.health >= this.healthForRest ? true : false;
+    return !this.healthForRest || this.health >= this.healthForRest;
   };
 
   attack(opponent) {
@@ -49,18 +49,23 @@ class Monster {
   };
 
   isAttackSuccessful(hit, opponent) {
-    return (hit > opponent.armor || hit === 20) && hit !== 1 ? true : false;
+    return (hit > opponent.armor || hit === 20) && hit !== 1;
   };
 
   decreaseHealth(demage) {
     this.demage = demage;
-    return this.health - demage <= 0 ? this.setDeath() : this.health -= demage; 
+    if (this.health - demage <= 0) return this.setDeath();
+    this.health -= demage;
   };
 
   increaseHealth() {
     this.currentHit = 0;
-    this.addHealth();
-    return this.health + this.restoredHealth > 100 ? this.health = 100 : this.health += this.restoredHealth;
+    this.restoredHealth = this.addHealth();
+    this.health = this.health + this.restoredHealth > 100
+      ? 100
+      : this.health + this.restoredHealth;
+
+    return this.health;
   };
 
   setDeath() {
