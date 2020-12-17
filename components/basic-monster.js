@@ -32,10 +32,10 @@ class Monster {
   };
 
   performAction(action, opponent, reportAttack, reportRecovery) {
-    if (!this.actions >= action) return;
+    if (!(this.actions >= action)) return;
     this.canAttack() ? this.attack(opponent) : this.increaseHealth();
     this.currentHit
-      ? reportAttack(this.character, this.currentWeapon.name, this.currentHit, opponent)
+      ? reportAttack(this.character, this.currentWeapon.name, opponent)
       : reportRecovery(this.character, this.restoredHealth);
   }
 
@@ -45,11 +45,12 @@ class Monster {
 
   attack(opponent) {
     const hit = this.currentHit = this.hit();
-    return this.isAttackSuccessful(hit, opponent) ? opponent.decreaseHealth(hit) : opponent.health; 
+    if (this.isAttackSuccessful(hit, opponent)) return opponent.decreaseHealth(hit);
+    opponent.demage = 0;
   };
 
   isAttackSuccessful(hit, opponent) {
-    return (hit > opponent.armor || hit === 20) && hit !== 1;
+    return (hit > opponent.armor || hit === 20) && hit > 1;
   };
 
   decreaseHealth(demage) {
@@ -59,6 +60,7 @@ class Monster {
   };
 
   increaseHealth() {
+    debugger;
     this.currentHit = 0;
     this.restoredHealth = this.addHealth();
     this.health = this.health + this.restoredHealth > 100

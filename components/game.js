@@ -13,6 +13,7 @@ class Game {
 
   start() {
     while (this.monster1.alive && this.monster2.alive) {
+      if(this.currentRound > 200) return this.finish(); 
       this.round(this.monster1, this.monster2);
     }
   }
@@ -34,8 +35,8 @@ class Game {
     this.currentRound += 1;
   }
 
-  reportAttack(monster, weapon, hit, defender) {
-    console.log(`${monster} attacks ${defender.character} with ${weapon} dealing ${hit} damage`);
+  reportAttack(monster, weapon, opponent) {
+    console.log(`${monster} attacks ${opponent.character} with ${weapon} dealing ${opponent.demage} damage`);
   }
 
   reportRecovery(character, restoredHealth) {
@@ -43,7 +44,8 @@ class Game {
   }
 
   finish(monster) {
-    console.log(`The ${monster.character} monster is win!`);
-    window.alert(`The ${monster.character} monster is win!`)
+    const result = monster ? `The ${monster.character} monster is winner!` : 'No winner'; 
+    console.log(result);
+    window.alert(result);
   }
 }
