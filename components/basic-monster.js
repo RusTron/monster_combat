@@ -64,7 +64,6 @@ class Monster {
     this.health = this.health + this.restoredHealth > 100
       ? 100
       : this.health + this.restoredHealth;
-
     return this.health;
   };
 
