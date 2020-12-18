@@ -1,13 +1,40 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./components/weapon.js" defer></script>
+    <script src="./components/basic-monster.js" defer></script>
+    <script src="./components/monsters.js" defer></script>
+    <script src="./components/game.js" defer></script>
+    <script src="./index.js" defer></script>
   </head>
   <body>
+    <form action="get" class="game">
+      <label for="monster1" class="game__names">Choose monster #1</label>
+      <select name="monsters" id="monster1" class="game__select"required>
+        <option value="" class="game__select--none">None</option>
+        <option value="Calm" class="game__select--monster1">Calm</option>
+        <option value="Absent-minded" class="game__select--monster1">Absent-minded</option>
+        <option value="Berserk" class="game__select--monster1">Berserk</option>
+        <option value="Careful" class="game__select--monster1">Careful</option>
+      </select>
+      <label for="monster2" class="game__names">Choose monster #2</label>
+      <select name="monsters" id="monster2" class="game__select" required>
+        <option value="" class="game__select--none">None</option>
+        <option value="Calm" class="game__select--monster2">Calm</option>
+        <option value="Absent-minded" class="game__select--monster2">Absent-minded</option>
+        <option value="Berserk" class="game__select--monster2">Berserk</option>
+        <option value="Careful" class="game__select--monster2">Careful</option>
+      </select>
+      <div class="game__opponents">
+        <span class="game__opponents--name"></span>
+        <span class="game__opponents--separator">Vs</span>
+        <span class="game__opponents--name"></span>
+      </div>
+      <button type="submit" class="start">Start Game!</button>
+    </form>
   </body>
 </html>
